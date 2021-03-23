@@ -78,8 +78,21 @@ const openPhotoSwipe = (gallery, curIndex, openTriggerEl) => {
         })
       }
     }
-  })
-
+  }),
+  // Opening zoom in animation starting
+  pswpGallery.listen('initialZoomIn', function() {
+    postAppMessage({
+        swipableArticles: 0,
+        hideBars: 1
+    });
+  }),
+  // After gallery is closed and closing animation finished.
+  pswpGallery.listen('destroy', function() {
+    postAppMessage({
+        swipableArticles: 1,
+        hideBars: 0
+    });
+  }),
   pswpGallery.init()
 }
 
