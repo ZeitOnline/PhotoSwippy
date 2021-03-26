@@ -23,14 +23,13 @@
     }
   },
   "devDependencies": {
-    "eslint": "^4.19.1",
+    "eslint": "^7.22.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-promise": "^3.7.0",
-    "eslint-plugin-standard": "^3.1.0",
-    "microbundle": "^0.4.4"
+    "microbundle": "^0.13.0"
   },
   "peerDependencies": {
     "photoswipe": "^4.1.2"
