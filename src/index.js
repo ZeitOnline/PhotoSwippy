@@ -20,7 +20,8 @@ const defaultPhotoswippyOptions = {
   itemSelector: 'a',
   captionSelector: 'figcaption',
   hoverPreload: false,
-  useMsrc: true
+  useMsrc: true,
+  eventListener: []
 }
 
 const openPhotoSwipe = (gallery, curIndex, openTriggerEl) => {
@@ -78,7 +79,33 @@ const openPhotoSwipe = (gallery, curIndex, openTriggerEl) => {
         })
       }
     }
-  })
+  }),
+
+  /**
+   * We add an array with listeners to the options,
+   * so we can supply external functionality to the photoswipe object at init.
+   * It is added like that:
+   * const options = {
+      eventListener: [
+        {
+          name: 'initialZoomIn',
+          callback: function() {
+            console.log('initialZoomIn');
+          }
+        },
+        {
+          name: 'destroy',
+          callback: function() {
+            console.log('destroy');
+          }
+        }
+      ]
+    };
+    photoswippy.init(PhotoSwipe, PhotoSwipeUI_Default, options);
+   */
+  pswpGallery.options.eventListener.forEach( listener => {
+    pswpGallery.listen(listener.name, listener.callback());
+  }),
 
   pswpGallery.init()
 }

@@ -185,7 +185,23 @@
 
   <script src="../dist/photoswippy.umd.js"></script>
   <script type="text/javascript">
-    photoswippy.init(PhotoSwipe, PhotoSwipeUI_Default)
+    const options = {
+      eventListener: [
+        {
+          name: 'initialZoomIn',
+          callback: function() {
+            console.log('initialZoomIn');
+          }
+        },
+        {
+          name: 'destroy',
+          callback: function() {
+            console.log('destroy');
+          }
+        }
+      ]
+    };
+    photoswippy.init(PhotoSwipe, PhotoSwipeUI_Default, options);
     photoswippy.build()
   </script>
 </body>
