@@ -146,7 +146,10 @@ Options can be defined in three ways:
   /** If 'true', the mouseover on a gallery item will preload the image */
   hoverPreload: false,
   /** If 'true', the src of the thumbnail image (if it exists) will be used as thumbnail for photoswipe (msrc option)*/
-  useMsrc: true
+  useMsrc: true,
+  /** supply eventListener für Photoswipe Events, see: https://photoswipe.com/documentation/api.html
+   * format: {name: 'name', callback: 'cb function'} */
+  eventListener: []
 }
 ```
 
