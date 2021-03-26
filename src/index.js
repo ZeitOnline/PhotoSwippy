@@ -20,7 +20,8 @@ const defaultPhotoswippyOptions = {
   itemSelector: 'a',
   captionSelector: 'figcaption',
   hoverPreload: false,
-  useMsrc: true
+  useMsrc: true,
+  eventListener: []
 }
 
 const openPhotoSwipe = (gallery, curIndex, openTriggerEl) => {
@@ -79,20 +80,33 @@ const openPhotoSwipe = (gallery, curIndex, openTriggerEl) => {
       }
     }
   }),
-  // Opening zoom in animation starting
-  pswpGallery.listen('initialZoomIn', function() {
-    postAppMessage({
-        swipableArticles: 0,
-        hideBars: 1
-    });
+
+  /**
+   * We add an array with listeners to the options,
+   * so we can supply external functionality to the photoswipe object at init.
+   * It is added like that:
+   * const options = {
+      eventListener: [
+        {
+          name: 'initialZoomIn',
+          callback: function() {
+            console.log('initialZoomIn');
+          }
+        },
+        {
+          name: 'destroy',
+          callback: function() {
+            console.log('destroy');
+          }
+        }
+      ]
+    };
+    photoswippy.init(PhotoSwipe, PhotoSwipeUI_Default, options);
+   */
+  pswpGallery.options.eventListener.forEach( listener => {
+    pswpGallery.listen(listener.name, listener.callback());
   }),
-  // After gallery is closed and closing animation finished.
-  pswpGallery.listen('destroy', function() {
-    postAppMessage({
-        swipableArticles: 1,
-        hideBars: 0
-    });
-  }),
+
   pswpGallery.init()
 }
 
