@@ -79,7 +79,7 @@ const openPhotoSwipe = (gallery, curIndex, openTriggerEl) => {
         })
       }
     }
-  }),
+  })
 
   /**
    * We add an array with listeners to the options,
@@ -104,8 +104,8 @@ const openPhotoSwipe = (gallery, curIndex, openTriggerEl) => {
     photoswippy.init(PhotoSwipe, PhotoSwipeUI_Default, options);
    */
   pswpGallery.options.eventListener.forEach( listener => {
-    pswpGallery.listen(listener.name, listener.callback());
-  }),
+    pswpGallery.listen(listener.name, listener.callback);
+  })
 
   pswpGallery.init()
 }
